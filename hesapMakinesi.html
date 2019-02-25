@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hesap Makinesi</title>
+    <meta charset="utf8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <style>
+    .container{
+        
+        width: 250px;
+        border: 1px solid #f45134;
+        
+        
+    }
+    </style>
+
+
+</head>
+<body>
+    <br />
+    <div class="container">
+        <br />
+        <div class="row">
+            <div class="col-md-3" align="center">
+                <input name="sonuc" id="sonuc" class="sonuc"/>
+            </div>
+            
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                <button class="btn btn-outline-danger" value="C" onclick="Temizle()">C</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-outline-success btn-sm" onclick="HafizayaAl('mod')">Mod</button>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                <button class="btn btn-outline-info" onclick="HesapEkle(7)">7</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-outline-info" onclick="HesapEkle(8)">8</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-outline-info" onclick="HesapEkle(9)">9</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-outline-success" onclick="HafizayaAl('-')">-</button>
+            </div>
+        </div>
+        
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                <button class="btn btn-outline-info" onclick="HesapEkle(4)">4</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-outline-info" onclick="HesapEkle(5)">5</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-outline-info" onclick="HesapEkle(6)">6</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-outline-success" onclick="HafizayaAl('/')">/</button>
+            </div>
+        </div>
+        
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                <button class="btn btn-outline-info" onclick="HesapEkle(1)">1</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-outline-info" onclick="HesapEkle(2)">2</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-outline-info" onclick="HesapEkle(3)">3</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-outline-success" onclick="HafizayaAl('*')">*</button>
+            </div>
+        </div>
+        
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                
+            </div>
+
+            <div class="col-md-3">
+                <button class="btn btn-outline-info" onclick="HesapEkle(0)" class="sifir">0</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-outline-warning" onclick="Hesapla()">=</button>
+            </div>
+            <div class="col-md-3">
+               <button class="btn btn-outline-success" onclick="HafizayaAl('+')">+</button>
+            </div>
+
+        </div>
+        <br />
+
+
+        
+    </div>
+
+
+<script>
+        var sayi = 0;
+        var ilkSayi = 0;
+        var islem = "";
+        function HesapEkle(s) {
+            if (islem == "=") 
+            {
+                Temizle();
+                islem = "";
+            }
+            if (islem != "")
+            {
+                document.getElementById("sonuc").value = "";
+            }
+            document.getElementById("sonuc").value += s;
+            sayi = document.getElementById("sonuc").value;
+        }
+ 
+        function HafizayaAl(p)
+        {
+            ilkSayi = document.getElementById("sonuc").value;
+            sayi = 0;
+            islem = p;
+        }
+        function Temizle() {
+            document.getElementById("sonuc").value = "";
+            ilkSayi = sayi = 0;
+        }
+        function Hesapla() {
+            
+            var sonuc = 0;
+            if (islem == "mod")
+                sonuc = ilkSayi % sayi;
+
+            if (islem == "/")
+                sonuc = parseInt(ilkSayi) / parseInt(sayi);
+ 
+            if (islem == "*")
+                sonuc = ilkSayi * sayi;
+
+            if (islem == "+")
+                sonuc = parseInt(ilkSayi) + parseInt(sayi);
+            
+            if (islem == "-")
+                sonuc = ilkSayi - sayi;
+
+            Temizle();
+            document.getElementById("sonuc").value = sonuc;
+            islem = "=";
+        }
+    </script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>
